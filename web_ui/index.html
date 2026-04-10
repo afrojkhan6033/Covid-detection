@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COV-CNN | AI Medical Diagnostic System</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-mode">
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">⬡</div>
+                <div class="logo-text">
+                    <h1>COV-CNN</h1>
+                    <p>AI Diagnostic Intelligence</p>
+                </div>
+            </div>
+            <div class="system-status">
+                <span class="status-dot healthy"></span>
+                <span class="status-text">System Ready</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero / Upload Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h2>Advanced Chest X-Ray Analytics</h2>
+                    <p>Harnessing ResNet50, VGG16, and Xception for rapid COVID-19 screening with tri-model consensus.</p>
+                </div>
+                
+                <div class="upload-container" id="drop-zone">
+                    <input type="file" id="file-input" hidden accept="image/*">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">
+                        <span class="highlight">Click to upload</span> or drag and drop
+                        <span class="sub-text">Supported: JPG, PNG, BMP</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div class="loader-container hidden" id="loader">
+                <div class="spinner"></div>
+                <p>Analyzing Medical Image Data...</p>
+            </div>
+
+            <!-- Results Section -->
+            <section class="results-section hidden" id="results">
+                <div class="results-header">
+                    <button class="btn-clear" id="reset-btn">← New Analysis</button>
+                    <h3>Inference Report</h3>
+                </div>
+
+                <div class="diagnosis-card">
+                    <div class="verdict-label">Final Diagnosis</div>
+                    <div class="verdict-value" id="final-verdict">—</div>
+                    <div class="confidence-badge" id="avg-confidence">Confidence: 0%</div>
+                </div>
+
+                <div class="results-grid">
+                    <!-- Preview Card -->
+                    <div class="card preview-card">
+                        <div class="card-header">Scan Preview</div>
+                        <div class="preview-img-container">
+                            <img id="preview-img" src="" alt="X-ray Preview">
+                        </div>
+                    </div>
+
+                    <!-- Charts Card -->
+                    <div class="card chart-card">
+                        <div class="card-header">Model Consensus Comparison</div>
+                        <div class="chart-container">
+                            <canvas id="confidenceChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Individual Model Cards -->
+                    <div class="model-details-container">
+                        <div class="card model-card" data-model="ResNet50">
+                            <div class="model-info">
+                                <span class="model-name">ResNet50</span>
+                                <span class="model-result" id="res-label">—</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="res-bar"></div>
+                            </div>
+                            <div class="model-meta">Confidence: <span id="res-conf">0%</span></div>
+                        </div>
+
+                        <div class="card model-card" data-model="VGG16">
+                            <div class="model-info">
+                                <span class="model-name">VGG16</span>
+                                <span class="model-result" id="vgg-label">—</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="vgg-bar"></div>
+                            </div>
+                            <div class="model-meta">Confidence: <span id="vgg-conf">0%</span></div>
+                        </div>
+
+                        <div class="card model-card" data-model="Xception">
+                            <div class="model-info">
+                                <span class="model-name">Xception</span>
+                                <span class="model-result" id="xcp-label">—</span>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-bar" id="xcp-bar"></div>
+                            </div>
+                            <div class="model-meta">Confidence: <span id="xcp-conf">0%</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 COV-CNN Diagnostics. Professional Edition.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
