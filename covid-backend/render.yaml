@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: covid-detection-backend
+    env: python
+    # We specify the region, though optional, it's good practice
+    region: oregon
+    # The build command installs the dependencies from requirements.txt
+    buildCommand: "pip install -r requirements.txt"
+    # The start command runs the FastAPI server using Uvicorn
+    # Render provides the port to use dynamically via the $PORT environment variable
+    startCommand: "uvicorn backend:app --host 0.0.0.0 --port $PORT"
+    # Free instance type is suitable for testing, but note that TensorFlow models
+    # might require more memory than what the free tier (512MB) provides.
+    # If the app crashes with an "OOM (Out Of Memory)" error, you may need a higher plan.
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
