@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/predict",
-      "destination": "https://your-render-backend-url.onrender.com/predict"
+      "destination": "https://covid-detection-production.up.railway.app/predict"
     }
   ],
   "headers": [

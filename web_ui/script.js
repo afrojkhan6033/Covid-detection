@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const previewImg = document.getElementById('preview-img');
     const resetBtn = document.getElementById('reset-btn');
 
-    const API_URL = 'http://127.0.0.1:8000/predict';
+    const API_URL = '/predict';
     let confidenceChart = null;
 
     // --- Event Listeners ---
