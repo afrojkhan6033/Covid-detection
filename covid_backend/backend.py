@@ -36,7 +36,7 @@ async def lifespan(app: FastAPI):
     print("[*] Starting up Backend API...")
     print("[*] Loading COVID-19 Models...")
     
-    CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
+    CURRENT_DIR = os.path.join(os.getcwd(), "covid_backend")
 
     for name in MODEL_SIZES:
         model_path = os.path.join(CURRENT_DIR, f"{name}_Model.keras")
