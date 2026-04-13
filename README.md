@@ -30,11 +30,16 @@ The application is structured into three distinct layers:
 
 ## Repository Structure
 ```text
-├── web_ui/                    # Static frontend files (HTML/CSS/JS)
-├── backend.py                 # FastAPI server and inference engine
+├── covid-backend/             # FastAPI backend and ML models
+│   ├── backend.py             # FastAPI inference engine
+│   ├── render.yaml            # Render deployment configuration
+│   ├── requirements.txt       # Dependency definitions
+│   └── *.keras                # Serialized model weights
+├── web_ui/                    # Static frontend interfaces
+│   ├── vercel.json            # Vercel frontend deployment configuration
+│   └── (HTML/CSS/JS files) 
+├── screenshots/               # Interface screenshots
 ├── run_backend.bat            # Windows startup script
-├── requirements.txt           # Dependency definitions
-├── *.keras                    # Serialized model weights 
 └── *.ipynb                    # Training and exploratory data analysis notebooks
 ```
 
@@ -45,17 +50,21 @@ The application is structured into three distinct layers:
 1. **Clone and Install Dependencies:**
    ```bash
    git clone <repo-url>
-   cd CNN_project
+   cd CNN_project/covid-backend
    pip install -r requirements.txt
    ```
    *(Note: Large `.keras` files may require Git LFS if tracked via Git.)*
 
 2. **Start the Server:**
-   - **Windows:** Run `run_backend.bat`
-   - **Manual:** `python backend.py`
+   - **Windows:** Double-click `run_backend.bat` from the root directory.
+   - **Manual:** Navigate to `covid-backend/` and run `python backend.py`.
 
 3. **Access UI:** 
    Navigate to `http://127.0.0.1:8000/`
+
+## Deployment Ready
+- **Backend (Render):** A `render.yaml` blueprint is provided in the `covid-backend/` directory for deploying the FastAPI server to [Render](https://render.com). Ensure Render's **Root Directory** is set to `covid-backend/`.
+- **Frontend (Vercel):** A `vercel.json` configuration configures frontend routing. Set Vercel's **Root Directory** to `web_ui/`. Update the `API_URL` variable in `script.js` to point to your new Render deployment!
 
 ## Core API Endpoints
 - `GET /health` - Returns 200 OK along with a list of successfully loaded Keras models in memory.
