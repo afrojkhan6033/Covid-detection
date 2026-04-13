@@ -30,7 +30,7 @@ The application is structured into three distinct layers:
 
 ## Repository Structure
 ```text
-├── covid-backend/             # FastAPI backend and ML models
+├── covid_backend/             # FastAPI backend and ML models
 │   ├── backend.py             # FastAPI inference engine
 │   ├── render.yaml            # Render deployment configuration
 │   ├── requirements.txt       # Dependency definitions
